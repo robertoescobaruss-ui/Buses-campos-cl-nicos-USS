@@ -3,439 +3,241 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sistema de Transporte Campos Clínicos - Universidad San Sebastián">
   <title>Transporte USS - Campos Clínicos</title>
+  <link rel="icon" href="https://cdn.uss.cl/content/uploads/2022/12/14190951/favicon-uss.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Aptos:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --navy: #1C3557;
-      --blue: #2462AE;
-      --teal: #00B0A0;
-      --gray: #3A4F6E;
-      --bg: #F5F7FA;
-      --surface: #FFFFFF;
-      --border: #DDE3EC;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Aptos', 'Calibri', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--navy);
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Aptos','Calibri',system-ui,sans-serif;background:#F0F4F8;min-height:100vh;-webkit-font-smoothing:antialiased}
 
     /* HEADER */
-    .header {
-      background: linear-gradient(135deg, var(--navy) 0%, #0F1E2E 100%);
-      padding: 32px 0;
-      box-shadow: 0 2px 12px rgba(28, 53, 87, 0.12);
-    }
+    .header{background:#1C3557;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(28,53,87,.15)}
+    .logo-uss{height:38px;display:block}
+    .live{display:flex;align-items:center;gap:6px;background:rgba(0,176,160,.18);border:1px solid rgba(0,176,160,.35);border-radius:20px;padding:5px 13px;color:#00C4B4;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+    .dot{width:7px;height:7px;background:#00B0A0;border-radius:50%;animation:blink 2s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: white;
-    }
-
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-icon svg {
-      width: 24px;
-      height: 24px;
-      color: var(--teal);
-    }
-
-    .logo-text h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: white;
-      margin: 0;
-    }
-
-    .logo-text p {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin: 2px 0 0 0;
-    }
-
-    .badge {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: rgba(0, 176, 160, 0.2);
-      border-radius: 16px;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-    }
-
-    .dot {
-      width: 6px;
-      height: 6px;
-      background: var(--teal);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    /* HERO */
+    .hero{background:#1C3557;display:grid;grid-template-columns:1fr 1fr;min-height:280px;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:36px;background:#F0F4F8;border-radius:100% 100% 0 0/40px 40px 0 0}
+    .hero-text{padding:44px 32px 64px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(0,176,160,.18);border-radius:20px;padding:5px 13px;color:#00C4B4;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;width:fit-content}
+    .hero-tag svg{width:13px;height:13px;stroke:#00C4B4;fill:none;stroke-width:2}
+    .hero h1{font-size:36px;font-weight:700;color:#fff;line-height:1.2;letter-spacing:-.02em}
+    .hero p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.7;max-width:320px}
+    .hero-img{position:relative;overflow:hidden}
+    .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;opacity:.88}
+    .hero-img::before{content:'';position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(to right,#1C3557,transparent);z-index:1}
 
     /* MAIN */
-    .main {
-      padding: 60px 0;
-    }
-
-    .title-section {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .title-section h1 {
-      font-size: 44px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-      color: var(--navy);
-    }
-
-    .title-section p {
-      font-size: 16px;
-      color: var(--gray);
-      opacity: 0.85;
-      margin-bottom: 24px;
-    }
-
-    .subtitle {
-      display: inline-block;
-      padding: 14px 24px;
-      background: rgba(36, 98, 174, 0.08);
-      border-left: 3px solid var(--blue);
-      border-radius: 6px;
-      color: var(--gray);
-      font-size: 13px;
-      line-height: 1.6;
-    }
+    .main{padding:36px 24px 52px;max-width:1100px;margin:0 auto}
+    .section-label{font-size:10px;font-weight:700;color:#2462AE;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+    .section-label::after{content:'';flex:1;height:1px;background:#DDE3EC}
 
     /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
 
-    .card {
-      background: var(--surface);
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
+    .card{background:#fff;border-radius:13px;border:1px solid #DDE3EC;padding:20px 16px;text-decoration:none;display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:all .22s ease;position:relative;overflow:hidden}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#2462AE;transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
+    .card:hover{border-color:#2462AE;box-shadow:0 8px 22px rgba(28,53,87,.13);transform:translateY(-5px)}
+    .card:hover::before{transform:scaleX(1)}
 
-    .card:hover {
-      border-color: var(--blue);
-      box-shadow: 0 8px 24px rgba(28, 53, 87, 0.12);
-      transform: translateY(-6px);
-    }
+    .card-top{display:flex;align-items:flex-start;gap:11px}
+    .card-illus{width:48px;height:48px;border-radius:9px;background:#EBF2FA;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .card-illus svg{width:28px;height:28px}
+    .card-name{font-size:13px;font-weight:700;color:#1C3557;line-height:1.3;margin:0}
+    .card-loc{font-size:11px;color:#7A8EA8;margin:3px 0 0;display:flex;align-items:center;gap:3px}
+    .card-loc svg{width:10px;height:10px;flex-shrink:0;stroke:#7A8EA8;fill:none;stroke-width:1.8}
 
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, var(--blue) 0%, #4A7FD7 100%);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .card-divider{height:1px;background:#EEF1F6}
 
-    .card-icon svg {
-      width: 26px;
-      height: 26px;
-      color: white;
-      stroke: white;
-      stroke-width: 1.5;
-      fill: none;
-    }
+    .card-footer{display:flex;align-items:center;justify-content:space-between}
+    .status{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#00875A;letter-spacing:.2px}
+    .status-dot{width:6px;height:6px;background:#00B0A0;border-radius:50%}
+    .bus-tag{display:flex;align-items:center;gap:3px;font-size:10px;color:#7A8EA8}
+    .bus-tag svg{width:13px;height:13px;stroke:#7A8EA8;fill:none;stroke-width:1.5}
 
-    .card-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--navy);
-      margin: 0;
-    }
-
-    .card-location {
-      font-size: 12px;
-      color: var(--gray);
-      opacity: 0.75;
-      margin: 4px 0 0 0;
-    }
-
-    .card-badge {
-      display: inline-block;
-      padding: 4px 10px;
-      background: rgba(0, 176, 160, 0.1);
-      color: var(--teal);
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-      width: fit-content;
-    }
-
-    .card-cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px 14px;
-      background: var(--blue);
-      color: white;
-      border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      align-self: flex-start;
-      letter-spacing: 0.3px;
-    }
-
-    .card-cta:hover {
-      background: #1a4a8a;
-      transform: translateX(2px);
-    }
-
-    .card-cta svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      stroke-width: 2.5;
-      fill: none;
-    }
+    .card-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;background:#2462AE;color:#fff;border-radius:8px;font-size:12px;font-weight:700;letter-spacing:.2px;border:none;cursor:pointer;text-decoration:none;align-self:stretch;transition:background .2s}
+    .card-btn:hover{background:#1a4a8a}
+    .card-btn svg{width:13px;height:13px;stroke:#fff;stroke-width:2.5;fill:none}
 
     /* FOOTER */
-    .footer {
-      background: var(--navy);
-      color: white;
-      padding: 32px 0;
-      text-align: center;
-      font-size: 11px;
-      opacity: 0.8;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
+    .footer{background:#1C3557;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:48px}
+    .footer-logo{height:28px;opacity:.8}
+    .footer-txt{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.6px;text-transform:uppercase}
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .title-section h1 {
-        font-size: 28px;
-      }
-
-      .title-section p {
-        font-size: 14px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        padding: 18px;
-      }
-
-      .card-title {
-        font-size: 13px;
-      }
-
-      .card-icon {
-        width: 40px;
-        height: 40px;
-      }
-
-      .card-icon svg {
-        width: 22px;
-        height: 22px;
-      }
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr}
+      .hero-img{display:none}
+      .hero h1{font-size:28px}
+      .hero-text{padding:36px 24px 56px}
+      .grid{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+      .card{padding:16px 14px}
+      .footer{flex-direction:column;text-align:center}
     }
   </style>
 </head>
 <body>
-  <!-- HEADER -->
+
   <div class="header">
-    <div class="container">
-      <div class="header-content">
-        <a href="https://www.uss.cl/" class="logo" target="_blank">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10" stroke-width="1.5"/>
-              <path stroke-width="1.5" d="M12 6v6l4 2"/>
+    <img class="logo-uss" src="https://cdn.uss.cl/content/uploads/2025/10/22175624/USShorizontal-tagline-ilumina-dark.svg" alt="Universidad San Sebastián" onerror="this.outerHTML='<span style=\'color:white;font-size:20px;font-weight:700\'>USS</span>'">
+    <div class="live"><div class="dot"></div>Sistema activo</div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-tag">
+        <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg>
+        Campos Clínicos
+      </div>
+      <h1>Selecciona<br>tu ruta</h1>
+      <p>Completa el registro al subir al bus para optimizar el servicio de transporte institucional USS</p>
+    </div>
+    <div class="hero-img">
+      <img src="https://cdn.uss.cl/content/uploads/2024/12/18221101/admision-nota1-expouss-los-leones-opt-13.jpg" alt="Estudiantes USS" onerror="this.src='https://cdn.uss.cl/content/uploads/2024/08/19190458/og-uss-3.jpg'">
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="section-label">5 Centros asistenciales · Biobío</div>
+    <div class="grid">
+
+      <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_lota.html" class="card">
+        <div class="card-top">
+          <div class="card-illus">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="10" width="24" height="18" rx="2" fill="#DBEAFE" stroke="#2462AE" stroke-width="1.5"/>
+              <rect x="13" y="3" width="6" height="7" rx="1" fill="#2462AE"/>
+              <rect x="7" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="20" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="13" y="17" width="6" height="11" rx="1" fill="#2462AE"/>
+              <path d="M14 12h4M16 10v4" stroke="#00B0A0" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="logo-text">
-            <h1>Transporte USS</h1>
-            <p>Campos Clínicos</p>
+          <div>
+            <p class="card-name">Hospital de Lota</p>
+            <p class="card-loc"><svg viewBox="0 0 16 16"><path d="M8 2a4 4 0 0 1 4 4c0 3-4 8-4 8S4 9 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Lota, Biobío</p>
           </div>
-        </a>
-        <div class="badge">
-          <div class="dot"></div>
-          <span>Activo</span>
         </div>
-      </div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="status"><div class="status-dot"></div>Operativo</div>
+          <div class="bus-tag"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="8" rx="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M1 8h14"/></svg>Bus USS</div>
+        </div>
+        <div class="card-btn">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+
+      <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_coronel.html" class="card">
+        <div class="card-top">
+          <div class="card-illus">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="10" width="24" height="18" rx="2" fill="#DBEAFE" stroke="#2462AE" stroke-width="1.5"/>
+              <rect x="13" y="3" width="6" height="7" rx="1" fill="#2462AE"/>
+              <rect x="7" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="20" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="13" y="17" width="6" height="11" rx="1" fill="#2462AE"/>
+              <path d="M14 12h4M16 10v4" stroke="#00B0A0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="card-name">Hospital de Coronel</p>
+            <p class="card-loc"><svg viewBox="0 0 16 16"><path d="M8 2a4 4 0 0 1 4 4c0 3-4 8-4 8S4 9 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Coronel, Biobío</p>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="status"><div class="status-dot"></div>Operativo</div>
+          <div class="bus-tag"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="8" rx="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M1 8h14"/></svg>Bus USS</div>
+        </div>
+        <div class="card-btn">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+
+      <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_curanilahue.html" class="card">
+        <div class="card-top">
+          <div class="card-illus">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="10" width="24" height="18" rx="2" fill="#DBEAFE" stroke="#2462AE" stroke-width="1.5"/>
+              <rect x="13" y="3" width="6" height="7" rx="1" fill="#2462AE"/>
+              <rect x="7" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="20" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="13" y="17" width="6" height="11" rx="1" fill="#2462AE"/>
+              <path d="M14 12h4M16 10v4" stroke="#00B0A0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="card-name">Hospital Curanilahue</p>
+            <p class="card-loc"><svg viewBox="0 0 16 16"><path d="M8 2a4 4 0 0 1 4 4c0 3-4 8-4 8S4 9 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Curanilahue, Biobío</p>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="status"><div class="status-dot"></div>Operativo</div>
+          <div class="bus-tag"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="8" rx="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M1 8h14"/></svg>Bus USS</div>
+        </div>
+        <div class="card-btn">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+
+      <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_naval.html" class="card">
+        <div class="card-top">
+          <div class="card-illus">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="10" width="24" height="18" rx="2" fill="#DBEAFE" stroke="#2462AE" stroke-width="1.5"/>
+              <rect x="13" y="3" width="6" height="7" rx="1" fill="#2462AE"/>
+              <rect x="7" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="20" y="16" width="5" height="5" rx="1" fill="#5B9BD5"/>
+              <rect x="13" y="17" width="6" height="11" rx="1" fill="#2462AE"/>
+              <path d="M14 12h4M16 10v4" stroke="#00B0A0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="card-name">Hospital Naval</p>
+            <p class="card-loc"><svg viewBox="0 0 16 16"><path d="M8 2a4 4 0 0 1 4 4c0 3-4 8-4 8S4 9 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Concepción, Biobío</p>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="status"><div class="status-dot"></div>Operativo</div>
+          <div class="bus-tag"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="8" rx="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M1 8h14"/></svg>Bus USS</div>
+        </div>
+        <div class="card-btn">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+
+      <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_ca_victor_rios_ruiz.html" class="card">
+        <div class="card-top">
+          <div class="card-illus">
+            <svg viewBox="0 0 32 32" fill="none">
+              <rect x="2" y="8" width="28" height="20" rx="2" fill="#DBEAFE" stroke="#2462AE" stroke-width="1.5"/>
+              <rect x="11" y="2" width="10" height="6" rx="1" fill="#2462AE"/>
+              <rect x="5" y="15" width="6" height="6" rx="1" fill="#5B9BD5"/>
+              <rect x="21" y="15" width="6" height="6" rx="1" fill="#5B9BD5"/>
+              <rect x="13" y="15" width="6" height="13" rx="1" fill="#2462AE"/>
+              <path d="M14 11h4M16 9v4" stroke="#00B0A0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="card-name">Centro Víctor Ríos Ruiz</p>
+            <p class="card-loc"><svg viewBox="0 0 16 16"><path d="M8 2a4 4 0 0 1 4 4c0 3-4 8-4 8S4 9 4 6a4 4 0 0 1 4-4z"/><circle cx="8" cy="6" r="1.5"/></svg>Concepción, Biobío</p>
+          </div>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-footer">
+          <div class="status"><div class="status-dot"></div>Operativo</div>
+          <div class="bus-tag"><svg viewBox="0 0 16 16"><rect x="1" y="4" width="14" height="8" rx="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M1 8h14"/></svg>Bus USS</div>
+        </div>
+        <div class="card-btn">Registrarse <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      </a>
+
     </div>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-    <div class="container">
-      <!-- TÍTULO -->
-      <div class="title-section">
-        <h1>Selecciona tu ruta</h1>
-        <p>Completa el registro al subir al bus</p>
-        <div class="subtitle">
-          📍 Sistema de transporte institucional USS - Campos Clínicos
-        </div>
-      </div>
-
-      <!-- GRID DE 5 HOSPITALES -->
-      <div class="grid">
-        <!-- 1. Hospital de Lota -->
-        <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_lota.html" class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p class="card-title">Hospital Lota</p>
-            <p class="card-location">Lota, Biobío</p>
-          </div>
-          <div class="card-badge">✓ Activo</div>
-          <span class="card-cta">
-            Registrar
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-
-        <!-- 2. Hospital de Coronel -->
-        <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_coronel.html" class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p class="card-title">Hospital Coronel</p>
-            <p class="card-location">Coronel, Biobío</p>
-          </div>
-          <div class="card-badge">✓ Activo</div>
-          <span class="card-cta">
-            Registrar
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-
-        <!-- 3. Hospital Curanilahue -->
-        <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_curanilahue.html" class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p class="card-title">Hospital Curanilahue</p>
-            <p class="card-location">Curanilahue, Biobío</p>
-          </div>
-          <div class="card-badge">✓ Activo</div>
-          <span class="card-cta">
-            Registrar
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-
-        <!-- 4. Hospital Naval -->
-        <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_naval.html" class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p class="card-title">Hospital Naval</p>
-            <p class="card-location">Concepción, Biobío</p>
-          </div>
-          <div class="card-badge">✓ Activo</div>
-          <span class="card-cta">
-            Registrar
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-
-        <!-- 5. Centro Víctor Ríos Ruiz -->
-        <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_ca_victor_rios_ruiz.html" class="card">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <p class="card-title">Centro Víctor Ríos Ruiz</p>
-            <p class="card-location">Concepción, Biobío</p>
-          </div>
-          <div class="card-badge">✓ Activo</div>
-          <span class="card-cta">
-            Registrar
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <div class="footer">
-    <div class="container">
-      Universidad San Sebastián · Campos Clínicos Concepción · 2026
-    </div>
+    <img class="footer-logo" src="https://cdn.uss.cl/content/uploads/2025/10/22175619/USShorizontal-tagline-ilumina-blanco.svg" alt="USS" onerror="this.style.display='none'">
+    <span class="footer-txt">Campos Clínicos Concepción · Control de Transporte · 2026</span>
   </div>
+
 </body>
 </html>
