@@ -15,6 +15,7 @@
       --teal: #00B0A0;
       --gold: #BFA06A;
       --gray: #3A4F6E;
+      --gray2: #7A8EA8;
       --bg: #F5F7FA;
       --surface: #FFFFFF;
       --border: #DDE3EC;
@@ -37,6 +38,7 @@
       color: var(--text);
       min-height: 100vh;
       padding: 20px;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
@@ -44,29 +46,114 @@
       margin: 0 auto;
     }
 
+    /* TOPBAR */
+    .topbar {
+      background: linear-gradient(180deg, #163152 0%, #132b47 100%);
+      padding: 20px 32px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      box-shadow: 0 8px 24px rgba(28, 53, 87, 0.18);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .topbar-l {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-top {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-top svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    .topbar-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .topbar-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .topbar-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .topbar-r {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .live-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(0, 176, 160, 0.2);
+      border: 1px solid rgba(0, 176, 160, 0.4);
+      border-radius: 20px;
+    }
+
+    .dot-live {
+      width: 8px;
+      height: 8px;
+      background: #00B0A0;
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .live-txt {
+      font-size: 11px;
+      color: #00C4B4;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     /* HEADER */
     .header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 48px;
       animation: fadeIn 0.6s ease-out;
     }
 
-    .logo-box {
-      margin-bottom: 24px;
-    }
-
-    .logo-box svg {
-      width: 60px;
-      height: 60px;
-      display: inline-block;
-    }
-
     .header h1 {
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
+      line-height: 1.2;
     }
 
     .header p {
@@ -74,33 +161,35 @@
       color: var(--gray);
       opacity: 0.85;
       font-weight: 400;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
+      margin-bottom: 24px;
     }
 
     .subheader {
-      margin-top: 20px;
-      padding: 16px 24px;
+      display: inline-block;
+      padding: 16px 28px;
       background: rgba(36, 98, 174, 0.08);
       border-left: 4px solid var(--blue);
       border-radius: 8px;
       color: var(--blue);
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       line-height: 1.6;
+      max-width: 600px;
     }
 
     /* GRID DE HOSPITALES */
     .hospitales-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      margin-bottom: 48px;
     }
 
     .hospital-card {
       background: var(--surface);
       border-radius: 16px;
-      padding: 32px 24px;
+      padding: 32px;
       box-shadow: 0 4px 16px rgba(28, 53, 87, 0.08);
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -109,6 +198,25 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hospital-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue2) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease-out;
+    }
+
+    .hospital-card:hover::before {
+      transform: scaleX(1);
     }
 
     .hospital-card:hover {
@@ -121,23 +229,30 @@
       transform: translateY(-4px);
     }
 
+    .hospital-header {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
     .hospital-icon {
-      width: 56px;
-      height: 56px;
+      width: 64px;
+      height: 64px;
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue2) 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(36, 98, 174, 0.3);
     }
 
     .hospital-icon svg {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       color: white;
       stroke: white;
-      stroke-width: 2;
+      stroke-width: 1.5;
       fill: none;
     }
 
@@ -152,23 +267,24 @@
     .hospital-info p {
       font-size: 13px;
       color: var(--gray);
-      margin: 0;
+      margin: 4px 0 0 0;
       opacity: 0.8;
       line-height: 1.5;
     }
 
     .hospital-meta {
       display: flex;
-      gap: 12px;
-      margin-top: 8px;
+      gap: 10px;
       flex-wrap: wrap;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
     }
 
     .meta-tag {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 4px 12px;
+      padding: 5px 12px;
       background: rgba(0, 176, 160, 0.1);
       color: var(--teal);
       border-radius: 6px;
@@ -178,14 +294,9 @@
       text-transform: uppercase;
     }
 
-    .meta-tag.comunas {
+    .meta-tag.comuna {
       background: rgba(36, 98, 174, 0.1);
       color: var(--blue);
-    }
-
-    .meta-tag.status {
-      background: rgba(0, 176, 160, 0.15);
-      color: #00B0A0;
     }
 
     .hospital-cta {
@@ -193,38 +304,79 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 12px 16px;
+      padding: 14px 20px;
       background: linear-gradient(135deg, var(--blue) 0%, var(--blue2) 100%);
       color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 13px;
+      font-size: 14px;
       transition: all 0.2s;
       text-decoration: none;
       border: none;
       cursor: pointer;
       margin-top: 8px;
+      align-self: flex-start;
+      box-shadow: 0 4px 12px rgba(36, 98, 174, 0.2);
     }
 
     .hospital-cta:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 16px rgba(36, 98, 174, 0.35);
+    }
+
+    .hospital-cta:active {
       transform: translateX(2px);
-      box-shadow: 0 4px 12px rgba(36, 98, 174, 0.3);
     }
 
     .hospital-cta svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       stroke-width: 2;
       fill: none;
     }
 
+    /* STATS */
+    .stats-section {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 16px rgba(28, 53, 87, 0.08);
+      border-left: 4px solid var(--teal);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--gray);
+      opacity: 0.8;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
     /* FOOTER */
     .footer {
       text-align: center;
-      padding: 24px;
+      padding: 32px;
       border-top: 1px solid var(--border);
-      margin-top: 60px;
       color: var(--gray);
       font-size: 12px;
       opacity: 0.7;
@@ -246,6 +398,7 @@
 
     .hospital-card {
       animation: fadeIn 0.6s ease-out forwards;
+      opacity: 0;
     }
 
     .hospital-card:nth-child(1) { animation-delay: 0.1s; }
@@ -256,8 +409,20 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
+      .topbar {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+      }
+
+      .topbar-l,
+      .topbar-r {
+        width: 100%;
+        justify-content: center;
+      }
+
       .header h1 {
-        font-size: 28px;
+        font-size: 32px;
       }
 
       .hospitales-grid {
@@ -268,40 +433,80 @@
       .hospital-card {
         padding: 24px;
       }
+
+      .hospital-icon {
+        width: 56px;
+        height: 56px;
+      }
+
+      .hospital-icon svg {
+        width: 32px;
+        height: 32px;
+      }
+
+      .stats-section {
+        padding: 24px;
+      }
+
+      .stats-grid {
+        gap: 24px;
+      }
+
+      .stat-num {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div class="logo-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-width="1.5" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-          <path stroke-width="1.5" d="M12 6v6l4 2.4"/>
-        </svg>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-l">
+        <div class="logo-top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-width="1.5" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <path stroke-width="1.5" d="M12 6v6l4 2.4"/>
+          </svg>
+        </div>
+        <div class="topbar-copy">
+          <div class="topbar-title">Transporte Campos Clínicos</div>
+          <div class="topbar-sub">Universidad San Sebastián</div>
+        </div>
       </div>
-      <h1>Transporte Campos Clínicos</h1>
-      <p>Universidad San Sebastián</p>
-      <div class="subheader">
-        📍 Selecciona tu hospital o centro asistencial para registrar tu uso del transporte institucional
+      <div class="topbar-r">
+        <div class="live-chip">
+          <div class="dot-live"></div>
+          <div class="live-txt">Sistema activo</div>
+        </div>
       </div>
     </div>
 
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Registro de Transporte</h1>
+      <p>Selecciona tu hospital o centro asistencial</p>
+      <div class="subheader">
+        📍 Completa el registro al subir al bus para optimizar el servicio de transporte institucional
+      </div>
+    </div>
+
+    <!-- GRID DE HOSPITALES -->
     <div class="hospitales-grid">
       <!-- Hospital de Lota -->
       <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_lota.html" class="hospital-card">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="hospital-header">
           <div class="hospital-icon">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
           </div>
           <div class="hospital-info">
             <h2>Hospital de Lota</h2>
             <p>Registro de transporte institucional</p>
-            <div class="hospital-meta">
-              <span class="meta-tag comunas">Lota, Biobío</span>
-              <span class="meta-tag status">Activo</span>
-            </div>
           </div>
+        </div>
+        <div class="hospital-meta">
+          <span class="meta-tag comuna">🏘️ Lota, Biobío</span>
+          <span class="meta-tag">✓ Activo</span>
         </div>
         <span class="hospital-cta">
           Registrarse
@@ -311,18 +516,18 @@
 
       <!-- Hospital de Coronel -->
       <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_de_coronel.html" class="hospital-card">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="hospital-header">
           <div class="hospital-icon">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
           </div>
           <div class="hospital-info">
             <h2>Hospital de Coronel</h2>
             <p>Registro de transporte institucional</p>
-            <div class="hospital-meta">
-              <span class="meta-tag comunas">Coronel, Biobío</span>
-              <span class="meta-tag status">Activo</span>
-            </div>
           </div>
+        </div>
+        <div class="hospital-meta">
+          <span class="meta-tag comuna">🏘️ Coronel, Biobío</span>
+          <span class="meta-tag">✓ Activo</span>
         </div>
         <span class="hospital-cta">
           Registrarse
@@ -332,18 +537,18 @@
 
       <!-- Hospital Curanilahue -->
       <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_curanilahue.html" class="hospital-card">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="hospital-header">
           <div class="hospital-icon">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
           </div>
           <div class="hospital-info">
             <h2>Hospital Curanilahue</h2>
             <p>Registro de transporte institucional</p>
-            <div class="hospital-meta">
-              <span class="meta-tag comunas">Curanilahue, Biobío</span>
-              <span class="meta-tag status">Activo</span>
-            </div>
           </div>
+        </div>
+        <div class="hospital-meta">
+          <span class="meta-tag comuna">🏘️ Curanilahue, Biobío</span>
+          <span class="meta-tag">✓ Activo</span>
         </div>
         <span class="hospital-cta">
           Registrarse
@@ -353,18 +558,18 @@
 
       <!-- Hospital Naval -->
       <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_hospital_naval.html" class="hospital-card">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="hospital-header">
           <div class="hospital-icon">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
           </div>
           <div class="hospital-info">
             <h2>Hospital Naval</h2>
             <p>Registro de transporte institucional</p>
-            <div class="hospital-meta">
-              <span class="meta-tag comunas">Concepción, Biobío</span>
-              <span class="meta-tag status">Activo</span>
-            </div>
           </div>
+        </div>
+        <div class="hospital-meta">
+          <span class="meta-tag comuna">🏘️ Concepción, Biobío</span>
+          <span class="meta-tag">✓ Activo</span>
         </div>
         <span class="hospital-cta">
           Registrarse
@@ -372,20 +577,20 @@
         </span>
       </a>
 
-      <!-- Centro Víctor Ríos Ruiz -->
+      <!-- Centro Asistencial Víctor Ríos Ruiz -->
       <a href="https://campos-clinicos-uss.vercel.app/registro_bus_uss_ca_victor_rios_ruiz.html" class="hospital-card">
-        <div style="display: flex; gap: 16px; align-items: flex-start;">
+        <div class="hospital-header">
           <div class="hospital-icon">
             <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
           </div>
           <div class="hospital-info">
             <h2>Centro Asistencial Víctor Ríos Ruiz</h2>
             <p>Registro de transporte institucional</p>
-            <div class="hospital-meta">
-              <span class="meta-tag comunas">Concepción, Biobío</span>
-              <span class="meta-tag status">Activo</span>
-            </div>
           </div>
+        </div>
+        <div class="hospital-meta">
+          <span class="meta-tag comuna">🏘️ Concepción, Biobío</span>
+          <span class="meta-tag">✓ Activo</span>
         </div>
         <span class="hospital-cta">
           Registrarse
@@ -394,6 +599,27 @@
       </a>
     </div>
 
+    <!-- STATS -->
+    <div class="stats-section">
+      <h3 style="color: var(--navy); font-size: 20px; margin-bottom: 8px;">Sistema de Registro</h3>
+      <p style="color: var(--gray); opacity: 0.8; font-size: 14px; margin-bottom: 20px;">Datos del servicio de transporte institucional</p>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Centros asistenciales</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Carreras registradas</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Disponibilidad</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
     <div class="footer">
       Universidad San Sebastián · Campos Clínicos Concepción · Control de Transporte
     </div>
